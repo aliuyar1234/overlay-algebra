@@ -1,0 +1,14 @@
+
+\section{Related Work}
+
+\paragraph{Parameter-efficient adaptation and weight-space composition.}
+\method{} lives in the broader ecosystem of parameter-efficient adaptation methods such as LoRA~\citep{hu2022lora}. It is also adjacent to work on combining task-specific updates or adapters, including AdapterFusion~\citep{pfeiffer2021adapterfusion} and task arithmetic~\citep{ilharco2023task}. Those lines of work establish that narrow updates can sometimes be useful building blocks. Our contribution is narrower and more controlled: we study whether \emph{operational output contracts} can be separated from shared semantics on a fixed QA substrate, rather than proposing a general-purpose composition system across many tasks.
+
+\paragraph{Structured and grounded output control.}
+A second neighboring area studies structured generation and grounded outputs directly. JSONSchemaBench, for example, highlights how operationally important and empirically nontrivial structured generation remains for modern language models~\citep{geng2025jsonschemabench}. Our paper is not a structured-generation benchmark and does not attempt to outperform constrained decoding systems. Instead, strict JSON and exact quotation serve as two concrete contracts through which to study operational recoverability.
+
+\paragraph{Reading or decomposing behavior from updates.}
+Recent work has begun to read behavior from trained low-rank updates or to decompose broader behavioral structure from training signals. W2T shows that LoRA checkpoints already encode rich behavioral information once factorization ambiguity is removed~\citep{han2026w2t}. Gradient Atoms discovers interpretable behavior-like components through sparse decomposition of training gradients~\citep{rosser2026gradientatoms}. Those papers are philosophically close to ours, but the scientific object is different. We do not try to infer behavior from weights alone or discover behaviors unsupervised. We ask a more operational question: after training a direct overlay adapter, can we subtract a shared semantic scaffold and still recover a deployable behavior residual at full scale?
+
+\paragraph{Novelty boundary.}
+The novelty claim we make is deliberately narrow. We do \emph{not} claim the first decomposition of behavior from adapters, the first adapter composition method, or universal modularity. The paper contributes a semantics-fixed protocol, a dense-delta residualization method for single-overlay recovery, and evidence that two deployment-style behaviors recover cleanly under that protocol.

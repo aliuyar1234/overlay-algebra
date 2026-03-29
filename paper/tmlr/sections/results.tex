@@ -1,0 +1,67 @@
+
+\section{Results}
+\label{sec:results}
+
+\begin{table*}[t]
+    \centering
+    \begin{threeparttable}
+    \caption{\textbf{Corrected full-scale single-overlay recovery.} In both validated overlays, prompt-only under the same output contract collapses on the active operational metric, while \method{} matches or slightly exceeds the direct single-overlay adapter and remains effectively identical on answer F1.}
+    \label{tab:main-results}
+    \small
+    \setlength{\tabcolsep}{4pt}
+    \renewcommand{\arraystretch}{1.06}
+    \begin{tabular}{l l
+                    S[table-format=1.4]
+                    S[table-format=1.4]
+                    S[table-format=1.4]
+                    S[table-format=1.4]
+                    S[table-format=1.4]
+                    S[table-format=1.4]
+                    S[table-format=1.4]}
+        \toprule
+        \textbf{Overlay} & \textbf{Primary metric} &
+        {\textbf{Prompt}} &
+        {\textbf{Direct}} &
+        {\textbf{\method{}}} &
+        {\makecell[c]{\textbf{Direct}\\\textbf{F1}}} &
+        {\makecell[c]{\textbf{\method{}}\\\textbf{F1}}} &
+        {\makecell[c]{\textbf{Recovery}\\\textbf{ratio}}} &
+        {\textbf{$\beta$}} \\
+        \midrule
+        \overlay{J} & JSON strict valid & 0.0000 & 0.9986 & 0.9986 & 0.8346 & 0.8344 & 1.0000 & 1.0 \\
+        \overlay{Q} & Quote exact & 0.0000 & 0.9413 & 0.9414 & 0.8121 & 0.8122 & 1.0001 & 1.0 \\
+        \bottomrule
+    \end{tabular}
+    \begin{tablenotes}[flushleft]
+        \footnotesize
+        \item Prompt-only answer F1 is also \num{0.0000} in both overlays because malformed outputs count as failures under the paper's strict parser-based evaluation.
+    \end{tablenotes}
+    \end{threeparttable}
+\end{table*}
+
+\subsection{Two overlays recover cleanly at full scale}
+
+Table~\ref{tab:main-results} and Figure~\ref{fig:results} show the main empirical pattern. In both validated overlays, the prompt-only scaffold is near zero on the active operational metric, while the residualized system lands directly on top of the direct adapter. That is the pattern the paper needs. It means the recovered behavior is not being explained away by prompt conditioning alone.
+
+\paragraph{JSON (\overlay{J}).}
+The JSON result is exceptionally clean. \method{} matches the direct adapter exactly on strict schema validity (\num{0.9986} vs.\ \num{0.9986}) and remains effectively identical on answer F1 (\num{0.8344} vs.\ \num{0.8346}). Under the same contract, prompt-only remains noncompetitive. This is the strongest case in the paper that a formatting-oriented operational requirement can be separated from shared QA semantics without paying a meaningful semantic penalty.
+
+\paragraph{Quote (\overlay{Q}).}
+The quote result is also clearly positive. On the corrected canonical path,\footnote{The initial full-scale quote path exposed a metric aggregation bug. The tainted artifacts were archived, the metric path was repaired, and the canonical reports in this bundle were regenerated from corrected metrics. Appendix~\ref{app:audit} summarizes that audit trail.} \method{} reaches \num{0.9414} quote exactness versus \num{0.9413} for the direct quote adapter, while slightly exceeding it on answer F1 (\num{0.8122} vs.\ \num{0.8121}). This matters because quotation is a stricter and more semantically coupled contract than JSON formatting alone. The positive quote result therefore makes the single-overlay story materially stronger.
+
+\begin{figure*}[t]
+    \centering
+    \includegraphics[width=\textwidth]{fig_results_overview.pdf}
+    \caption{\textbf{Prompting alone is not enough; residualization is.} Each point is a full-scale test result. Left: the active operational metric for each overlay. Right: answer F1 after parser-based extraction. For both overlays, prompt-only collapses under the required contract, while \method{} overlaps with the direct single-overlay adapter.}
+    \label{fig:results}
+\end{figure*}
+
+\subsection{What the current evidence supports}
+
+The corrected full-scale bundle supports a strong version of the paper's single-overlay claim: in this semantics-fixed QA setting, at least two operational behaviors can be recovered from a shared scaffold plus an operational residual with negligible semantic degradation. It also supports the systems claim that the evaluation path is deterministic, parser-based, and auditable.
+
+What it \emph{does not} support is just as important. The paper does not claim pairwise or triple composition success, an ordering over which overlays are most composable, transfer beyond the SQuAD-derived core dataset, or universal superiority of dense deltas over factor-space subtraction in empirical terms. Dense deltas remain the principled method object, but the factor-subtraction ablation is absent, so the stronger version of that methods claim remains out of scope.
+
+\subsection{Why the result matters despite the narrow scope}
+
+The paper's value does not come from breadth. It comes from how tightly the scientific object is controlled. The question, support sentence, and answer semantics are fixed; only the output contract changes. The parser-based evaluation prevents the paper from leaning on a soft judge. And the prompt-only control makes the residual interpretation falsifiable. Within that controlled setting, recovering both JSON and exact quotation at full scale is a meaningful result.

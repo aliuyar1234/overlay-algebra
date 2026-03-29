@@ -1,0 +1,12 @@
+experiment_name: pilot_single_overlay_recovery_q
+milestone: M3
+command: overlay_algebra.reports.single_overlay_recovery
+seed: 17
+notes: Pilot-scale single-overlay recovery report for quote from saved evaluator outputs.
+paths:
+  output_dir: reports/pilot_single_overlay_recovery_q
+  prompt_only_metrics: runs/oa_m3_pilot_prompt_only_q_eval_17/metrics.json
+  direct_metrics: runs/oa_m3_pilot_direct_q_eval_17/metrics.json
+  soar_metrics: runs/oa_m3_pilot_soar_q_eval_17/metrics.json
+payload:
+  overlay_name: Q

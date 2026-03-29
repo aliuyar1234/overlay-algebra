@@ -1,0 +1,17 @@
+experiment_name: paper_artifacts_jq_m4
+milestone: M4
+command: overlay_algebra.reports.export_paper_artifacts
+seed: 17
+notes: Export bundle for the corrected reduced-scope J/Q M4 paper package.
+paths:
+  output_dir: reports/paper_artifact_bundle_jq_m4
+  full_single_overlay: reports/full_single_overlay_study
+  single_overlay_recovery_j: reports/full_single_overlay_recovery_j
+  single_overlay_recovery_q: reports/full_single_overlay_recovery_q
+  claim_checks_c1_c4_c5: reports/claim_checks_c1_c4_c5
+  status_md: docs/STATUS.md
+payload:
+  optional_artifacts:
+    paper_outline: docs/PAPER_OUTLINE.md
+    reproducibility: docs/REPRODUCIBILITY_AND_ENV.md
+    evidence_q_metric_fix: evidence/2026-03-27_m4_q_metric_fix_and_rerun.md

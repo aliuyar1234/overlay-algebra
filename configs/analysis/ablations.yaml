@@ -1,0 +1,59 @@
+experiment_name: ablations
+milestone: M6
+command: overlay_algebra.analysis.ablate
+seed: 17
+notes: Full-data M6 ablation and analysis sweep over saved M4/M5 artifacts.
+paths:
+  scaffold_adapter: runs/oa_m4_full_scaffold_17/adapter
+  eval_dataset: data/processed/squad_jcq_v1/val.jsonl
+  overlay_adapter_J: runs/oa_m4_full_j_17/adapter
+  overlay_adapter_C: runs/oa_m4_full_c_17/adapter
+  overlay_adapter_Q: runs/oa_m4_full_q_17/adapter
+  residual_adapter_J: runs/oa_m4_full_residualize_j_17/residual_adapter
+  residual_adapter_C: runs/oa_m4_full_residualize_c_17/residual_adapter
+  residual_adapter_Q: runs/oa_m4_full_residualize_q_17/residual_adapter
+payload:
+  base_model_name_or_path: Qwen/Qwen2.5-7B-Instruct
+  local_files_only: true
+  beta_grid: [0.5, 0.75, 1.0, 1.25]
+  semantic_guardrail_points: 3.0
+  max_length: 768
+  max_new_tokens: 96
+  max_eval_examples: 9353
+  eval_batch_size: 4
+  synthesized_lora_dropout: 0.0
+  checkpoint_interval_units: 1
+  heartbeat_interval_seconds: 30
+  control_poll_seconds: 5
+  max_checkpoints_to_keep: 3
+  device: cuda
+  torch_dtype: bf16
+  tasks:
+    - kind: factor_subtraction
+      overlay_name: J
+    - kind: factor_subtraction
+      overlay_name: C
+    - kind: factor_subtraction
+      overlay_name: Q
+    - kind: rank_sweep
+      overlay_name: J
+      rank_grid: [16, 32]
+    - kind: rank_sweep
+      overlay_name: C
+      rank_grid: [16, 32]
+    - kind: rank_sweep
+      overlay_name: Q
+      rank_grid: [16, 32]
+    - kind: energy_summary
+    - kind: manifest_summary
+      manifest_paths:
+        - runs/oa_m4_full_residualize_j_17/tuning_manifest.json
+        - runs/oa_m4_full_residualize_c_17/tuning_manifest.json
+        - runs/oa_m4_full_residualize_q_17/tuning_manifest.json
+        - runs/oa_m5_full_pairs_17/tuning_manifest.json
+        - runs/oa_m5_full_triple_17/tuning_manifest.json
+    - kind: report_summary
+      report_paths:
+        full_single_overlay: reports/full_single_overlay_study/metrics.json
+        full_pair_composition: reports/full_pair_composition_study/metrics.json
+        full_triple_composition: reports/full_triple_composition_study/metrics.json

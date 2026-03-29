@@ -1,0 +1,17 @@
+experiment_name: full_triple_composition
+milestone: M5
+command: overlay_algebra.reports.composition_study
+seed: 17
+notes: Full-data M5 triple composition report from saved test metrics.
+paths:
+  output_dir: reports/full_triple_composition_study
+payload:
+  semantic_guardrail_points: 3.0
+  c2_margin_points: 0.03
+  tasks:
+    - condition: JCQ
+      active_overlays: [J, C, Q]
+      prompt_only_metrics: runs/oa_m5_full_prompt_only_jcq_eval_17/metrics.json
+      merge_metrics: runs/oa_m5_full_merge_jcq_eval_17/metrics.json
+      soar_metrics: runs/oa_m5_full_soar_jcq_eval_17/metrics.json
+      direct_metrics: runs/oa_m5_full_direct_jcq_eval_17/metrics.json

@@ -1,0 +1,30 @@
+experiment_name: decode_audit_q
+milestone: M4
+command: overlay_algebra.analysis.decode_audit
+seed: 17
+notes: Decode-budget audit for quote outputs on the full core validation split.
+paths:
+  eval_dataset: data/processed/squad_jcq_v1/val.jsonl
+payload:
+  base_model_name_or_path: Qwen/Qwen2.5-7B-Instruct
+  local_files_only: true
+  max_length: 768
+  max_eval_examples: 9353
+  eval_batch_size: 4
+  device: cuda
+  torch_dtype: bf16
+  reuse_feature_cache: true
+  sort_eval_by_length: true
+  tasks:
+    - name: prompt_only_q
+      adapter_dir: runs/oa_m4_full_scaffold_17/adapter
+      condition: Q
+      budgets: [64, 96, 128]
+    - name: direct_q
+      adapter_dir: runs/oa_m4_full_q_17/adapter
+      condition: Q
+      budgets: [64, 96, 128]
+    - name: soar_q
+      adapter_dir: runs/oa_m4_full_residualize_q_17/adapter
+      condition: Q
+      budgets: [64, 96, 128]

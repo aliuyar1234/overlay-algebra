@@ -1,0 +1,16 @@
+experiment_name: squad_jcq_pilot_fixture
+milestone: M3
+command: overlay_algebra.data.build_pilot_slice
+seed: 17
+notes: >
+  Deterministic 1/1/1 pilot-slice build from the bundled fixture dataset for CPU-side validation of the pilot-slice CLI.
+paths:
+  source_dataset_dir: data/processed/squad_jcq_v1_fixture
+  output_dir: data/processed/squad_jcq_v1_fixture_pilot
+payload:
+  dataset_version: squad_jcq_v1_fixture_pilot
+  sample_seed: 17
+  sample_sizes:
+    train: 1
+    val: 1
+    test: 1

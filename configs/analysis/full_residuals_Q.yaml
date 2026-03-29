@@ -1,0 +1,35 @@
+experiment_name: full_residualize_q
+milestone: M4
+command: overlay_algebra.analysis.residualize
+seed: 17
+notes: Full-data M4 quote residualization on the processed core validation split.
+paths:
+  scaffold_adapter: runs/oa_m4_full_scaffold_17/adapter
+  overlay_adapter: runs/oa_m4_full_q_17/adapter
+  eval_dataset: data/processed/squad_jcq_v1/val.jsonl
+  feature_cache_dir: data/processed/squad_jcq_v1/_feature_cache
+payload:
+  base_model_name_or_path: Qwen/Qwen2.5-7B-Instruct
+  overlay_name: Q
+  local_files_only: true
+  beta_grid:
+    - 0.5
+    - 0.75
+    - 1.0
+    - 1.25
+  residual_rank: 16
+  composed_rank: 32
+  synthesized_lora_dropout: 0.0
+  semantic_guardrail_points: 3.0
+  max_length: 768
+  max_new_tokens: 128
+  max_eval_examples: 9353
+  eval_batch_size: 4
+  reuse_feature_cache: true
+  sort_eval_by_length: true
+  checkpoint_interval_units: 1
+  heartbeat_interval_seconds: 30
+  control_poll_seconds: 5
+  max_checkpoints_to_keep: 3
+  device: cuda
+  torch_dtype: bf16

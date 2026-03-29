@@ -1,0 +1,79 @@
+
+\documentclass[10pt]{article}
+\usepackage[preprint]{tmlr}
+\input{math_commands.tex}
+\usepackage{hyperref}
+\hypersetup{hidelinks}
+\usepackage{url}
+\usepackage{microtype}
+\usepackage{graphicx}
+\usepackage{booktabs}
+\usepackage{threeparttable}
+\usepackage{siunitx}
+\usepackage{tabularx}
+\usepackage{array}
+\usepackage{multirow}
+\usepackage{amsmath,amssymb}
+\usepackage{enumitem}
+\usepackage{xcolor}
+\usepackage{caption}
+\usepackage{makecell}
+
+\graphicspath{{figures/}}
+\urlstyle{same}
+\raggedbottom
+
+\definecolor{oaBlue}{HTML}{2F5D80}
+\definecolor{oaTeal}{HTML}{2E8B8B}
+\definecolor{oaGray}{HTML}{6B7280}
+\definecolor{oaDark}{HTML}{1F2937}
+\definecolor{oaGold}{HTML}{B58900}
+\definecolor{oaSoft}{HTML}{F5F7FA}
+
+\sisetup{
+  round-mode          = places,
+  round-precision     = 4,
+  detect-weight       = true,
+  table-number-alignment = center,
+  table-text-alignment   = center
+}
+
+\newcommand{\method}{SOAR}
+\newcommand{\scaffold}{\ensuremath{S}}
+\newcommand{\direct}[1]{\ensuremath{F_{#1}}}
+\newcommand{\residual}[1]{\ensuremath{R_{#1}}}
+\newcommand{\Dense}[1]{\ensuremath{\Delta_{#1}}}
+\newcommand{\overlay}[1]{\texttt{#1}}
+\newcommand{\jsonmetric}{\texttt{json\_strict\_schema\_valid}}
+\newcommand{\quotemetric}{\texttt{quote\_exact}}
+
+\title{\method: Recovering Operational Overlays\\ from Shared Semantics in Frozen Language Models}
+
+\author{
+\name Ali Uyar \\
+\addr Independent Researcher
+}
+
+\begin{document}
+\maketitle
+
+\begin{abstract}
+\input{sections/abstract}
+\end{abstract}
+
+\input{sections/intro}
+\input{sections/related}
+\input{sections/method}
+\input{sections/experiments}
+\input{sections/results}
+\input{sections/discussion}
+\input{sections/conclusion}
+
+\input{sections/references}
+
+\appendix
+\input{appendix/appendix_c_scope}
+\input{appendix/appendix_audit}
+\input{appendix/appendix_additional}
+
+\end{document}

@@ -1,0 +1,18 @@
+experiment_name: claim_checks_scaffold
+milestone: M0
+command: overlay_algebra.reports.claim_checks
+seed: 17
+notes: Placeholder claim-check config for M0. M6 will replace this with metric-driven claim gating inputs.
+paths:
+  metrics_root: runs
+  reports_root: reports
+payload:
+  claims:
+    - C1
+    - C2
+    - C3
+    - C4
+    - C5
+    - C6
+    - C7
+    - C8

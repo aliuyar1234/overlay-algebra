@@ -1,0 +1,38 @@
+{
+  "milestone": "M4",
+  "scope": "jq_first_reduced_scope",
+  "claims": {
+    "C1": "supported",
+    "C4": "partially supported",
+    "C5": "supported"
+  },
+  "overlays": {
+    "J": {
+      "primary_metric": "json_strict_schema_valid",
+      "prompt_only_primary": 0.0,
+      "direct_primary": 0.9985787379192723,
+      "soar_primary": 0.9985787379192723,
+      "direct_answer_f1": 0.8346232530138422,
+      "soar_answer_f1": 0.8344310579710837,
+      "recovery_ratio": 1.0
+    },
+    "Q": {
+      "primary_metric": "quote_exact",
+      "prompt_only_primary": 0.0,
+      "direct_primary": 0.9413492514686375,
+      "soar_primary": 0.9414440022740194,
+      "direct_answer_f1": 0.8120979675270877,
+      "soar_answer_f1": 0.8121520139841866,
+      "recovery_ratio": 1.0001006542526423
+    }
+  },
+  "derived": {
+    "mean_recovery_ratio": 1.000050327126321
+  },
+  "sources": {
+    "single_overlay_study": "reports/full_single_overlay_study/metrics.json",
+    "single_overlay_recovery_j": "reports/full_single_overlay_recovery_j/metrics.json",
+    "single_overlay_recovery_q": "reports/full_single_overlay_recovery_q/metrics.json",
+    "claim_checks": "reports/claim_checks_c1_c4_c5/metrics.json"
+  }
+}

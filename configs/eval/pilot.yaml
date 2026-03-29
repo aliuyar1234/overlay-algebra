@@ -1,0 +1,12 @@
+experiment_name: pilot_eval_scaffold
+milestone: M0
+command: overlay_algebra.eval.run
+seed: 17
+notes: Placeholder evaluation config for M0. M2+ will replace this with parser-backed evaluation settings.
+paths:
+  eval_dataset: data/processed/squad_jcq_v1/test.jsonl
+  predictions_output: runs
+payload:
+  decoding: greedy
+  temperature: 0
+  format_condition: plain

@@ -1,0 +1,44 @@
+
+\section{Prompt Contract and Target Examples}
+\label{app:targets}
+
+The logical prompt content is fixed across conditions except for the format specification.
+
+\begin{center}
+    \setlength{\fboxsep}{10pt}
+    \colorbox{oaSoft}{%
+        \parbox{0.94\linewidth}{%
+            \small
+            \textbf{Prompt template}\par\smallskip
+            {\ttfamily
+            Use only the provided context. Context sentences are labeled [S1], [S2], \dots\par
+            Do not use outside knowledge.\par
+            Required output format: \emph{FORMAT\_SPEC}\par\medskip
+            Question:\par
+            \emph{QUESTION}\par\medskip
+            Context:\par
+            \emph{LABELED\_CONTEXT}\par\medskip
+            Response:}
+        }%
+    }
+\end{center}
+
+For a toy example with answer $a=\text{24 months}$, support sentence ID $s=2$, and support sentence \texttt{The device includes a 24-month warranty.}, the compiled targets are:
+
+\begin{table}[htbp]
+    \centering
+    \small
+    \setlength{\tabcolsep}{5pt}
+    \renewcommand{\arraystretch}{1.08}
+    \begin{tabularx}{0.96\linewidth}{>{\raggedright\arraybackslash\bfseries}p{1.05cm} >{\raggedright\arraybackslash}X}
+        \toprule
+        \textbf{Cond.} & \textbf{Compiled target} \\
+        \midrule
+        Plain & {\ttfamily 24 months} \\
+        \overlay{J} & {\ttfamily \{"answer":"24 months"\}} \\
+        \overlay{Q} & {\ttfamily ANSWER: 24 months\par QUOTE: "The device includes a 24-month warranty."} \\
+        \bottomrule
+    \end{tabularx}
+\end{table}
+
+For strict metrics, malformed outputs are scored as failures rather than repaired by auxiliary heuristics. This strictness is intentional: it makes the paper's recovery claim more falsifiable and the evaluation trail easier to audit.

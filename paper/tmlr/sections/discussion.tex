@@ -1,0 +1,21 @@
+
+\section{Discussion and Limitations}
+\label{sec:discussion}
+
+The central lesson of the paper is not that operational behavior is universally modular. It is that \emph{some} operational behavior can be isolated cleanly enough to recover at full scale on top of shared semantics. JSON and exact quotation are already informative contrasts. JSON is the more formatting-local contract, and unsurprisingly it yields an almost exact recovery signature. Exact quotation is stricter and more semantically coupled, yet it still recovers cleanly in the corrected bundle. Together they provide strong evidence for partial recoverability.
+
+That said, the paper is deliberately narrow, and the narrowness matters for interpretation.
+
+\paragraph{Single-overlay only.}
+Although \method{} was designed with composition in mind, composition is not part of the validated claim path for this submission. The paper therefore supports single-overlay recovery, not pairwise or triple overlay algebra.
+
+\paragraph{One substrate, one backbone, one seed.}
+All reported experiments use one filtered SQuAD-derived dataset, one frozen backbone, one module subset, and one seed. This is enough for a controlled methods paper, but not for broad generalization claims. In particular, we do not know from this paper whether the same recovery pattern holds on other tasks, with other overlay grammars, or with other backbones.
+
+\paragraph{Dense deltas as a principled choice, not a settled empirical theorem.}
+The method works in effective dense-delta space because raw LoRA factor pairs are representation-dependent. That is a strong design rationale, and recent work on weight-space representations reinforces the importance of removing factorization ambiguity~\citep{han2026w2t}. But this paper does not include the missing factor-subtraction ablation, so it should not be read as an empirical proof that dense-delta residualization always dominates every factor-space alternative.
+
+\paragraph{Citation remains scope context.}
+The broader project included citation behavior. Direct full-scale citation training exists, but the clean downstream full-scale evidence chain does not. We treat that honestly: citation appears only in the appendix as a scope note, not as a positive or negative main-text result.
+
+These limitations do not undercut the main contribution. They clarify its intended use. The right reading of the paper is that a carefully controlled protocol can reveal clean recovery signatures for at least two operational overlays, and that such signatures are worth studying before claims of broader compositionality are made.

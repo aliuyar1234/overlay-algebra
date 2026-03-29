@@ -1,0 +1,17 @@
+experiment_name: paper_artifacts
+milestone: M7
+command: overlay_algebra.reports.export_paper_artifacts
+seed: 17
+notes: Export bundle for the final paper / appendix artifact pack.
+paths:
+  output_dir: reports/paper_artifact_bundle
+  full_single_overlay: reports/full_single_overlay_study
+  full_pair_composition: reports/full_pair_composition_study
+  full_triple_composition: reports/full_triple_composition_study
+  claim_checks_all: reports/claim_checks_all_claims
+  evidence: evidence
+payload:
+  optional_artifacts:
+    transfer_slice: reports/transfer_slice
+    paper_outline: docs/PAPER_OUTLINE.md
+    reproducibility: docs/REPRODUCIBILITY_AND_ENV.md

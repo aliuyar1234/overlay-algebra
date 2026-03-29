@@ -1,0 +1,17 @@
+experiment_name: pilot_direct_j_eval
+milestone: M3
+command: overlay_algebra.eval.run
+seed: 17
+notes: Pilot-scale direct JSON overlay evaluation.
+paths:
+  eval_dataset: data/processed/squad_jcq_v1_pilot_500_200_500/test.jsonl
+  adapter_dir: runs/oa_m3_pilot_j_17/adapter
+payload:
+  base_model_name_or_path: Qwen/Qwen2.5-7B-Instruct
+  local_files_only: true
+  condition: J
+  max_length: 768
+  max_new_tokens: 64
+  max_eval_examples: 500
+  device: cuda
+  torch_dtype: bf16

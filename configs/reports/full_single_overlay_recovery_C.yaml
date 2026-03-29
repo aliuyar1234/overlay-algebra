@@ -1,0 +1,12 @@
+experiment_name: full_single_overlay_recovery_c
+milestone: M4
+command: overlay_algebra.reports.single_overlay_recovery
+seed: 17
+notes: Full-data M4 single-overlay recovery report for citation from saved evaluator outputs.
+paths:
+  output_dir: reports/full_single_overlay_recovery_c
+  prompt_only_metrics: runs/oa_m4_full_prompt_only_c_eval_17/metrics.json
+  direct_metrics: runs/oa_m4_full_direct_c_eval_17/metrics.json
+  soar_metrics: runs/oa_m4_full_soar_c_eval_17/metrics.json
+payload:
+  overlay_name: C

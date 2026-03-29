@@ -1,0 +1,18 @@
+experiment_name: pilot_single_overlay_j_smoke_eval
+milestone: M3
+command: overlay_algebra.eval.run
+seed: 17
+notes: >
+  Smoke-scale M3 single-overlay recovery evaluation for the residualized JSON adapter on the bundled fixture shard.
+paths:
+  eval_dataset: data/processed/squad_jcq_v1_fixture/test.jsonl
+  adapter_dir: runs/oa_m3_pilot_residualize_j_smoke_17/adapter
+payload:
+  base_model_name_or_path: Qwen/Qwen2.5-7B-Instruct
+  local_files_only: true
+  condition: J
+  max_length: 192
+  max_new_tokens: 48
+  max_eval_examples: 1
+  device: cuda
+  torch_dtype: bf16

@@ -1,0 +1,9 @@
+experiment_name: full_single_overlay_study
+milestone: M4
+command: overlay_algebra.reports.full_single_overlay
+seed: 17
+notes: Reduced-scope M4 aggregate single-overlay study report from saved J/Q recovery reports.
+paths:
+  output_dir: reports/full_single_overlay_study
+  j_report: reports/full_single_overlay_recovery_j/metrics.json
+  q_report: reports/full_single_overlay_recovery_q/metrics.json

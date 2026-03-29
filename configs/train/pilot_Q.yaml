@@ -1,0 +1,32 @@
+experiment_name: pilot_q
+milestone: M3
+command: overlay_algebra.train.fit
+seed: 17
+notes: Pilot-scale M3 direct quote overlay adapter training on the deterministic pilot slice.
+paths:
+  train_dataset: data/processed/squad_jcq_v1_pilot_500_200_500/train.jsonl
+  eval_dataset: data/processed/squad_jcq_v1_pilot_500_200_500/val.jsonl
+payload:
+  base_model_name_or_path: Qwen/Qwen2.5-7B-Instruct
+  local_files_only: true
+  condition: Q
+  target_modules:
+    - o_proj
+    - down_proj
+  lora_rank: 16
+  lora_alpha: 16
+  lora_dropout: 0.05
+  learning_rate: 0.0001
+  train_epochs: 1
+  batch_size: 4
+  gradient_accumulation_steps: 8
+  max_length: 768
+  max_new_tokens: 96
+  max_train_examples: 500
+  max_eval_examples: 200
+  checkpoint_interval_optimizer_steps: 250
+  heartbeat_interval_seconds: 30
+  control_poll_seconds: 5
+  max_checkpoints_to_keep: 3
+  device: cuda
+  torch_dtype: bf16

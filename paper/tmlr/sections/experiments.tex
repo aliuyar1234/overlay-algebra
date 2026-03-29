@@ -1,0 +1,28 @@
+
+\section{Experimental Setup}
+\label{sec:setup}
+
+\subsection{Data}
+
+The core dataset is a filtered derivative of SQuAD~1.1~\citep{rajpurkar2016squad}. We retain only answerable examples whose gold answer span maps fully inside exactly one sentence under a pinned sentencizer. The resulting processed dataset, \texttt{squad\_jcq\_v1}, contains \num{78098} training examples, \num{9353} validation examples, and \num{10554} test examples. A total of \num{164} raw examples were dropped because the answer span did not map to exactly one sentence. The saved split audit reports no title overlap across train, validation, and test, and the dataset manifest reports zero round-trip compilation failures over \num{98005} checked processed examples.
+
+\subsection{Model and training}
+
+All main-path experiments use the frozen backbone \texttt{Qwen/Qwen2.5-7B-Instruct}~\citep{yang2024qwen25}. Adapters target \texttt{o\_proj} and \texttt{down\_proj}, with LoRA rank \num{16}, LoRA alpha \num{16}, dropout \num{0.05}, and bf16 training. We report the corrected full-scale artifact bundle for one seed (\#17). This is therefore a single-seed study, and we treat it that way in the claims and discussion.
+
+The scaffold adapter $\scaffold$ is trained on plain-answer targets. Direct overlay adapters $\direct{J}$ and $\direct{Q}$ are trained on the same processed examples with only the output contract changed. Residualization selects $\beta$ on the validation set using the locked grid above and the project's standard semantic-retention guardrail; both validated overlays select $\beta=1.0$.
+
+\subsection{Deterministic evaluation}
+
+Evaluation is parser-based and fully deterministic. JSON outputs are parsed and scored for validity and strict schema compliance. Quote outputs are parsed into an answer field and an exact support sentence string; the active quote metrics are exact sentence match and quote token F1. Semantic retention is measured by answer EM/F1 after parser-based answer extraction. Greedy decoding is used throughout, and no LLM judge appears in the critical claim path.
+
+For the main text we focus on two outcomes:
+\begin{enumerate}[leftmargin=1.5em]
+    \item the \textbf{active overlay metric} (\jsonmetric{} for \overlay{J}, \quotemetric{} for \overlay{Q}), and
+    \item \textbf{answer F1} as the primary semantic-retention metric.
+\end{enumerate}
+Prompt-only control is deliberately strong in one sense and deliberately weak in another: it shares the same scaffold semantics as \method{}, but it must satisfy the overlay contract through prompting alone. If prompt-only remains competitive, the paper's recovery interpretation weakens. If prompt-only collapses while \method{} remains near the direct adapter, the residual is doing meaningful work.
+
+\subsection{Scope discipline}
+
+The broader project defined three overlays (\overlay{J}, \overlay{C}, \overlay{Q}). The current paper path validates only \overlay{J} and \overlay{Q} at full scale. Direct full-scale citation training exists, but the downstream full-scale citation residualization/evaluation chain was not completed cleanly enough for a claim-safe main-text row. We therefore keep citation strictly as appendix-style scope context rather than as main empirical evidence.

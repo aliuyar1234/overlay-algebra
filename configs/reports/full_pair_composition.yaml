@@ -1,0 +1,29 @@
+experiment_name: full_pair_composition
+milestone: M5
+command: overlay_algebra.reports.composition_study
+seed: 17
+notes: Full-data M5 pair composition report from saved test metrics.
+paths:
+  output_dir: reports/full_pair_composition_study
+payload:
+  semantic_guardrail_points: 3.0
+  c2_margin_points: 0.03
+  tasks:
+    - condition: JC
+      active_overlays: [J, C]
+      prompt_only_metrics: runs/oa_m5_full_prompt_only_jc_eval_17/metrics.json
+      merge_metrics: runs/oa_m5_full_merge_jc_eval_17/metrics.json
+      soar_metrics: runs/oa_m5_full_soar_jc_eval_17/metrics.json
+      direct_metrics: runs/oa_m5_full_direct_jc_eval_17/metrics.json
+    - condition: JQ
+      active_overlays: [J, Q]
+      prompt_only_metrics: runs/oa_m5_full_prompt_only_jq_eval_17/metrics.json
+      merge_metrics: runs/oa_m5_full_merge_jq_eval_17/metrics.json
+      soar_metrics: runs/oa_m5_full_soar_jq_eval_17/metrics.json
+      direct_metrics: runs/oa_m5_full_direct_jq_eval_17/metrics.json
+    - condition: CQ
+      active_overlays: [C, Q]
+      prompt_only_metrics: runs/oa_m5_full_prompt_only_cq_eval_17/metrics.json
+      merge_metrics: runs/oa_m5_full_merge_cq_eval_17/metrics.json
+      soar_metrics: runs/oa_m5_full_soar_cq_eval_17/metrics.json
+      direct_metrics: runs/oa_m5_full_direct_cq_eval_17/metrics.json

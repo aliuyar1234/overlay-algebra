@@ -1,0 +1,30 @@
+experiment_name: full_bundle_c
+milestone: M4
+command: overlay_algebra.eval.bundle
+seed: 17
+notes: Load-once bundled full-data M4 evaluation for the citation condition.
+paths:
+  eval_dataset: data/processed/squad_jcq_v1/test.jsonl
+payload:
+  base_model_name_or_path: Qwen/Qwen2.5-7B-Instruct
+  local_files_only: true
+  max_length: 768
+  max_eval_examples: 10554
+  eval_batch_size: 4
+  device: cuda
+  torch_dtype: bf16
+  reuse_feature_cache: true
+  sort_eval_by_length: true
+  tasks:
+    - name: prompt_only_c
+      adapter_dir: runs/oa_m4_full_scaffold_17/adapter
+      condition: C
+      max_new_tokens: 64
+    - name: direct_c
+      adapter_dir: runs/oa_m4_full_c_17/adapter
+      condition: C
+      max_new_tokens: 64
+    - name: soar_c
+      adapter_dir: runs/oa_m4_full_residualize_c_17/adapter
+      condition: C
+      max_new_tokens: 64

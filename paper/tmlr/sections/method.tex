@@ -1,0 +1,68 @@
+
+\section{Semantics-Fixed Protocol and \method{}}
+\label{sec:method}
+
+\begin{figure*}[t]
+    \centering
+    \includegraphics[width=\textwidth]{fig_protocol_overview.pdf}
+    \caption{\textbf{Semantics-fixed single-overlay study.} The question, labeled context, and support sentence stay fixed; only the output contract changes. We train one scaffold adapter for plain answers and one direct adapter per overlay, convert both to effective dense deltas, subtract the scaffold in dense-delta space, and recompress the residual with truncated SVD. The paper validates the resulting single-overlay systems $\scaffold + \residual{J}$ and $\scaffold + \residual{Q}$, not broader pairwise or triple compositions.}
+    \label{fig:protocol}
+\end{figure*}
+
+\subsection{Semantics-fixed QA substrate}
+
+Each processed example contains a question, a sentence-labeled context, one gold answer span, and exactly one gold support sentence. The operational contract is the only thing that changes across conditions. Table~\ref{tab:contracts} summarizes the contracts used in the validated paper path.
+
+\begin{table}[t]
+    \centering
+    \begin{threeparttable}
+    \caption{\textbf{Operational contracts in the validated paper path.} The same labeled context and answer semantics underlie all conditions; only the required output format changes.}
+    \label{tab:contracts}
+    \small
+    \begin{tabularx}{\linewidth}{>{\raggedright\arraybackslash}p{0.95cm} >{\raggedright\arraybackslash}X >{\raggedright\arraybackslash}p{2.55cm}}
+        \toprule
+        \textbf{Cond.} & \textbf{Target form} & \textbf{Primary metric} \\
+        \midrule
+        Plain & answer text only & answer F1 \\
+        \overlay{J} & canonical JSON object with exactly one key, \texttt{"answer"} & \makecell[l]{strict JSON\\schema validity} \\
+        \overlay{Q} & two lines: \texttt{ANSWER: <text>} and \texttt{QUOTE: <JSON string literal of exact support sentence>} & \makecell[l]{exact support\\quote match} \\
+        \bottomrule
+    \end{tabularx}
+    \end{threeparttable}
+\end{table}
+
+This controlled compilation matters. By keeping the question, evidence, and gold answer fixed, the study turns ``JSON'' and ``quote'' into operational overlays rather than new semantic tasks.
+
+\subsection{Dense deltas as the method object}
+
+Let $M_0$ denote the frozen base model. We train a scaffold adapter $\scaffold$ on plain-answer targets and direct single-overlay adapters $\direct{J}$ and $\direct{Q}$ on the same examples under their respective contracts. For each adapted module $m$ with LoRA factors $(A_m, B_m, \alpha_m, r_m)$, we work with the effective dense update
+\begin{equation}
+\Dense{m} = \left(\frac{\alpha_m}{r_m}\right) B_m A_m.
+\end{equation}
+
+This choice is methodological rather than cosmetic. Raw LoRA factor pairs are not unique: different factor pairs can represent the same update. The effective dense delta is the stable object that actually perturbs the frozen backbone. In this paper we therefore treat dense-delta residualization as the core method object, while explicitly stopping short of a stronger empirical superiority claim over factor-space subtraction.
+
+\subsection{Single-overlay residualization}
+
+For overlay $k \in \{J,Q\}$ and adapted module $m$, \method{} computes the raw residual target
+\begin{equation}
+\Gamma_{k,m} = \Dense{F_k,m} - \beta_k \Dense{S,m},
+\end{equation}
+then recompresses $\Gamma_{k,m}$ with truncated SVD to obtain a deployable residual update
+\begin{equation}
+\Dense{R_k,m} = \mathrm{TSVD}_r\!\left(\Gamma_{k,m}\right).
+\end{equation}
+In practice, $\beta_k$ is selected on validation from the locked grid $\{0.5, 0.75, 1.0, 1.25\}$ under the standard semantic-retention guardrail. On the full-scale validated path, both overlays selected $\beta = 1.0$.
+
+The resulting single-overlay system is
+\begin{equation}
+M_k^{\textsc{soar}} = M_0 + \Dense{S} + \Dense{R_k}.
+\end{equation}
+For each overlay we compare three systems under the same required contract:
+\begin{enumerate}[leftmargin=1.5em]
+    \item \textbf{Prompt-only}: $M_0 + \Dense{S}$ with the overlay contract specified in the prompt.
+    \item \textbf{Direct}: $M_0 + \Dense{F_k}$.
+    \item \textbf{\method{}}: $M_0 + \Dense{S} + \Dense{R_k}$.
+\end{enumerate}
+
+The broader \method{} program also defines composition by adding multiple residuals on top of the scaffold. That idea motivated the project, but it is \emph{not} the validated contribution of this submission. The paper claims only single-overlay recovery.

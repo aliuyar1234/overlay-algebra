@@ -1,0 +1,34 @@
+experiment_name: compose_template
+milestone: M5
+command: overlay_algebra.analysis.compose
+seed: 17
+notes: Template composition config. Use pairs.yaml or triple.yaml for the paper path.
+paths:
+  scaffold_adapter: runs/oa_m4_full_scaffold_17/adapter
+  eval_dataset: data/processed/squad_jcq_v1/val.jsonl
+  residual_adapter_J: runs/oa_m4_full_residualize_j_17/residual_adapter
+  residual_adapter_C: runs/oa_m4_full_residualize_c_17/residual_adapter
+  residual_adapter_Q: runs/oa_m4_full_residualize_q_17/residual_adapter
+  direct_adapter_J: runs/oa_m4_full_j_17/adapter
+  direct_adapter_C: runs/oa_m4_full_c_17/adapter
+  direct_adapter_Q: runs/oa_m4_full_q_17/adapter
+payload:
+  base_model_name_or_path: Qwen/Qwen2.5-7B-Instruct
+  local_files_only: true
+  compositions:
+    - condition: JC
+      active_overlays: [J, C]
+      max_new_tokens: 64
+  alpha_grid: [0.5, 0.75, 1.0, 1.25]
+  merge_grid_step: 0.25
+  semantic_guardrail_points: 3.0
+  max_length: 768
+  max_eval_examples: 9353
+  eval_batch_size: 4
+  synthesized_lora_dropout: 0.0
+  checkpoint_interval_units: 1
+  heartbeat_interval_seconds: 30
+  control_poll_seconds: 5
+  max_checkpoints_to_keep: 3
+  device: cuda
+  torch_dtype: bf16

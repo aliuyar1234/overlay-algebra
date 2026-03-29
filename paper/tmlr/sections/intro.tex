@@ -1,0 +1,20 @@
+
+\section{Introduction}
+
+Modern language-model deployments often care less about open-ended chat behavior than about reliable \emph{output contracts}: emit valid JSON, provide the exact supporting sentence, or otherwise satisfy a downstream interface without post-hoc repair. Those contracts are operational requirements, not new semantic tasks. Yet standard post-training usually learns task semantics and output behavior together, making it difficult to ask a clean scientific question: \emph{how much of a narrow output behavior can be isolated from the shared task semantics that support it?}
+
+This paper studies a deliberately controlled version of that question. We hold the underlying task fixed to evidence-grounded question answering and vary only the required output contract. The substrate is a filtered derivative of SQuAD~1.1~\citep{rajpurkar2016squad} in which every retained example has exactly one gold support sentence. Contexts are sentence-labeled, targets are compiled deterministically, and evaluation is parser-based. The resulting setup is narrow by design: it sacrifices breadth in exchange for a clean object of study.
+
+Our method, \method{} (\emph{Semantic-Operational Adapter Residuals}), separates a shared semantic scaffold adapter from overlay-specific behavior. We first train a scaffold adapter $\scaffold$ for plain QA and direct single-overlay adapters $\direct{J}$ and $\direct{Q}$ for two deployment-style contracts: strict JSON output and exact support quotation. We then subtract the scaffold in \emph{effective dense-delta space} and recompress the remainder into deployable residual adapters $\residual{J}$ and $\residual{Q}$. The central empirical question is simple: can $\scaffold + \residual{k}$ recover the target behavior of $\direct{k}$ without materially degrading answer quality?
+
+The answer, on the corrected full-scale study, is yes for both validated overlays. For JSON, $\scaffold + \residual{J}$ matches the direct adapter exactly on strict schema validity while remaining effectively identical on answer F1. For exact quotation, $\scaffold + \residual{Q}$ matches or slightly exceeds the direct adapter on both quote exactness and answer F1. In both overlays, prompt-only control on the scaffold collapses under the same output contract, which is the key empirical signature that the residual is carrying genuine operational behavior rather than merely restating the prompt.
+
+The scope of the paper is intentionally narrow, and we preserve that narrowness throughout. We do \emph{not} claim universal behavior atoms, pairwise or triple composition success, or full equivalence to direct multi-behavior training. The broader project also included a citation overlay; direct full-scale citation training exists, but the clean downstream full-scale evidence chain does not, so citation appears only as scope context in the appendix rather than as a main result. Within that claim-safe boundary, the paper makes three contributions:
+
+\begin{itemize}[leftmargin=1.25em]
+    \item A \textbf{semantics-fixed protocol} for studying operational overlays on top of a shared QA substrate, with deterministic compilation and parser-based evaluation.
+    \item A \textbf{dense-delta residualization method} that extracts deployable single-overlay residuals from direct adapters while avoiding the representation ambiguity of raw LoRA factor arithmetic.
+    \item \textbf{Corrected full-scale evidence} that JSON and exact quote behaviors recover cleanly at full scale, together with an auditable artifact trail that makes the results easy to inspect and hard to overstate.
+\end{itemize}
+
+The result is a controlled, high-integrity paper about single-overlay recovery. Its contribution is not breadth. Its contribution is that the object under study is unusually well specified, the evaluation path is auditable, and the claims stop exactly where the evidence stops.

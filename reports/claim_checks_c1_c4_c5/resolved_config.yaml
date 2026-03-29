@@ -1,0 +1,18 @@
+experiment_name: claim_checks_c1_c4_c5
+milestone: M4
+command: overlay_algebra.reports.claim_checks
+seed: 17
+notes: Full-data M4 automated claim-check suggestions for C1, C4, and C5 from saved study artifacts.
+paths:
+  output_dir: reports/claim_checks_c1_c4_c5
+  single_overlay_summary: reports/full_single_overlay_study/metrics.json
+  split_audit: data/processed/squad_jcq_v1/split_audit.json
+  dataset_manifest: data/processed/squad_jcq_v1/dataset_manifest.json
+payload:
+  claims:
+    - C1
+    - C4
+    - C5
+  c1_required_overlays: 2
+  c1_recovery_ratio_floor: 0.8
+  semantic_guardrail_points: 3.0

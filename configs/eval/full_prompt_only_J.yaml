@@ -1,0 +1,18 @@
+experiment_name: full_prompt_only_j_eval
+milestone: M4
+command: overlay_algebra.eval.run
+seed: 17
+notes: Full-data M4 JSON prompt-only baseline on the scaffold adapter.
+paths:
+  eval_dataset: data/processed/squad_jcq_v1/test.jsonl
+  adapter_dir: runs/oa_m4_full_scaffold_17/adapter
+payload:
+  base_model_name_or_path: Qwen/Qwen2.5-7B-Instruct
+  local_files_only: true
+  condition: J
+  max_length: 768
+  max_new_tokens: 64
+  max_eval_examples: 10554
+  eval_batch_size: 4
+  device: cuda
+  torch_dtype: bf16

@@ -1,0 +1,18 @@
+experiment_name: squad_jcq_fixture_build
+milestone: M1
+command: overlay_algebra.data.build_dataset
+seed: 17
+notes: Build a deterministic SQuAD-format fixture shard for M1 dataset/compiler/parser validation.
+paths:
+  raw_train_path: tests/fixtures/raw/squad_v1_1/train-v1.1.json
+  raw_dev_path: tests/fixtures/raw/squad_v1_1/dev-v1.1.json
+  output_dir: data/processed/squad_jcq_v1_fixture
+payload:
+  dataset_version: squad_jcq_v1_fixture
+  source_scope: fixture_shard
+  split:
+    val_fraction: 0.1
+    seed: 17
+  sentence_splitter:
+    backend: spacy.blank("en")+sentencizer
+    expected_version: 3.8.13

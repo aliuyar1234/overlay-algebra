@@ -1,0 +1,26 @@
+experiment_name: jq_eval_batch_benchmark
+milestone: M5
+command: overlay_algebra.analysis.eval_batch_benchmark
+seed: 17
+notes: Benchmark reduced-scope M5 JQ evaluation batch sizes on the first live SOAR candidate before resuming compose.
+paths:
+  adapter: runs/oa_m5_full_pairs_jq_17/compositions/JQ/candidates/soar/alpha__j_0_50__q_0_50/adapter
+  eval_dataset: data/processed/squad_jcq_v1/val.jsonl
+  feature_cache_dir: data/processed/squad_jcq_v1/_feature_cache
+payload:
+  base_model_name_or_path: Qwen/Qwen2.5-7B-Instruct
+  adapter_name: jq_soar_benchmark
+  condition: JQ
+  local_files_only: true
+  max_length: 768
+  max_eval_examples: 9353
+  max_new_tokens: 96
+  device: cuda
+  torch_dtype: bf16
+  reuse_feature_cache: true
+  sort_eval_by_length: true
+  batch_sizes: [4, 8, 12, 16]
+  reference_batch_size: 4
+  stress_slice_size: 512
+  representative_slice_size: 1024
+  minimum_speedup_fraction: 0.15

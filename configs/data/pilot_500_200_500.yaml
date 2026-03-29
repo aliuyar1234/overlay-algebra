@@ -1,0 +1,16 @@
+experiment_name: squad_jcq_pilot_500_200_500
+milestone: M3
+command: overlay_algebra.data.build_pilot_slice
+seed: 17
+notes: >
+  Deterministic pilot slice selection from the processed core dataset for M3 single-overlay recovery work.
+paths:
+  source_dataset_dir: data/processed/squad_jcq_v1
+  output_dir: data/processed/squad_jcq_v1_pilot_500_200_500
+payload:
+  dataset_version: squad_jcq_v1_pilot_500_200_500
+  sample_seed: 17
+  sample_sizes:
+    train: 500
+    val: 200
+    test: 500

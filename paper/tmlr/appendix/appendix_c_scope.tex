@@ -1,0 +1,28 @@
+
+\section{Citation Overlay Scope Note}
+\label{app:citation}
+
+The broader project scope included a citation overlay (\overlay{C}) in addition to JSON (\overlay{J}) and exact quotation (\overlay{Q}). The current submission does not report citation as a main empirical result because the full downstream full-scale evidence chain was not completed cleanly enough for a claim-safe recovery row.
+
+\begin{table}[h]
+    \centering
+    \begin{threeparttable}
+    \caption{\textbf{Artifact status for the citation overlay.} Direct full-scale citation training exists, but the clean downstream full-scale recovery chain does not. The correct manuscript treatment is therefore appendix-style scope context, not a main-text positive or negative claim.}
+    \label{tab:c-status}
+    \small
+    \setlength{\tabcolsep}{4pt}
+    \renewcommand{\arraystretch}{1.08}
+    \begin{tabularx}{\linewidth}{>{\raggedright\arraybackslash}p{2.35cm} >{\raggedright\arraybackslash}p{1.7cm} X}
+        \toprule
+        \textbf{Stage} & \textbf{Status} & \textbf{Safe interpretation} \\
+        \midrule
+        Direct full-scale \overlay{C} training & Completed & The citation overlay was run at the direct-training stage. \\
+        Full-scale \overlay{C} residualization & Off-path archived attempt & No clean full-scale citation residual result exists. \\
+        Full-scale citation eval bundle & Absent & No full-scale citation test metrics should be reported. \\
+        Full-scale citation recovery report & Absent & Citation does not belong in the main recovery table. \\
+        \bottomrule
+    \end{tabularx}
+    \end{threeparttable}
+\end{table}
+
+This appendix note matters for honesty. It prevents two opposite misreadings at once: that citation was never run at full scale, and that citation recovery either clearly succeeded or clearly failed. The saved artifacts support neither extreme reading. They support the narrower truth that the reduced-scope one-GPU paper path prioritized the cleaner JSON/quote evidence and stopped citation short of a complete claim-safe downstream chain.

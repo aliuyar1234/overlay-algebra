@@ -1,0 +1,34 @@
+experiment_name: full_q
+milestone: M4
+command: overlay_algebra.train.fit
+seed: 17
+notes: Full-data M4 direct quote overlay adapter training on the processed core dataset.
+paths:
+  train_dataset: data/processed/squad_jcq_v1/train.jsonl
+  eval_dataset: data/processed/squad_jcq_v1/val.jsonl
+  feature_cache_dir: data/processed/squad_jcq_v1/_feature_cache
+payload:
+  base_model_name_or_path: Qwen/Qwen2.5-7B-Instruct
+  local_files_only: true
+  condition: Q
+  target_modules:
+    - o_proj
+    - down_proj
+  lora_rank: 16
+  lora_alpha: 16
+  lora_dropout: 0.05
+  learning_rate: 0.0001
+  train_epochs: 1
+  batch_size: 8
+  gradient_accumulation_steps: 4
+  max_length: 768
+  max_new_tokens: 64
+  max_train_examples: 78098
+  max_eval_examples: 9353
+  reuse_feature_cache: true
+  checkpoint_interval_optimizer_steps: 500
+  heartbeat_interval_seconds: 30
+  control_poll_seconds: 5
+  max_checkpoints_to_keep: 3
+  device: cuda
+  torch_dtype: bf16

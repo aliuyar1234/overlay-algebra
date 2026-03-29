@@ -1,0 +1,43 @@
+{
+  "derived": {
+    "mean_recovery_ratio": 1.000050327126321,
+    "prompt_only_best_overlays": []
+  },
+  "experiment_name": "full_single_overlay_study",
+  "milestone": "M4",
+  "overlays": {
+    "J": {
+      "direct_answer_f1": 0.8346232530138422,
+      "direct_primary": 0.9985787379192723,
+      "primary_metric": "json_strict_schema_valid",
+      "prompt_only_answer_f1": 0.0,
+      "prompt_only_primary": 0.0,
+      "recovery_ratio": 1.0,
+      "semantic_gap_vs_prompt_only": 0.8344310579710837,
+      "soar_answer_f1": 0.8344310579710837,
+      "soar_minus_prompt_only_primary": 0.9985787379192723,
+      "soar_primary": 0.9985787379192723
+    },
+    "Q": {
+      "direct_answer_f1": 0.8120979675270877,
+      "direct_primary": 0.9413492514686375,
+      "primary_metric": "quote_exact",
+      "prompt_only_answer_f1": 0.0,
+      "prompt_only_primary": 0.0,
+      "recovery_ratio": 1.0001006542526423,
+      "semantic_gap_vs_prompt_only": 0.8121520139841866,
+      "soar_answer_f1": 0.8121520139841866,
+      "soar_minus_prompt_only_primary": 0.9414440022740194,
+      "soar_primary": 0.9414440022740194
+    }
+  },
+  "sources": {
+    "config_path": "E:\\Research\\overlay_algebra_codex_research_build_pack_patched\\configs\\reports\\full_single_overlay_JQ.yaml",
+    "j_report": "reports\\full_single_overlay_recovery_j\\metrics.json",
+    "overlay_reports": {
+      "J": "reports\\full_single_overlay_recovery_j\\metrics.json",
+      "Q": "reports\\full_single_overlay_recovery_q\\metrics.json"
+    },
+    "q_report": "reports\\full_single_overlay_recovery_q\\metrics.json"
+  }
+}

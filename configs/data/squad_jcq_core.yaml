@@ -1,0 +1,20 @@
+experiment_name: squad_jcq_core
+milestone: M3
+command: overlay_algebra.data.build_dataset
+seed: 17
+notes: >
+  Full raw SQuAD 1.1 -> processed JCQ core dataset build on the locked v1 compiler, splitter, and split policy.
+paths:
+  raw_train_path: data/raw/squad_v1_1/train-v1.1.json
+  raw_dev_path: data/raw/squad_v1_1/dev-v1.1.json
+  output_dir: data/processed/squad_jcq_v1
+payload:
+  dataset_version: squad_jcq_v1
+  source_scope: official_squad_v1_1_answerable_one_support_sentence
+  split:
+    val_fraction: 0.1
+    seed: 17
+  sentence_splitter:
+    library: spacy
+    pipeline: blank_en_sentencizer
+    expected_version: 3.8.13

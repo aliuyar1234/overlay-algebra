@@ -1,0 +1,38 @@
+{
+  "derived": {
+    "recovery_ratio": 1.0001006542526423,
+    "semantic_gap_vs_prompt_only": 0.8121520139841866,
+    "soar_minus_prompt_only_primary": 0.9414440022740194
+  },
+  "experiment_name": "full_single_overlay_recovery_q",
+  "milestone": "M4",
+  "overlay_name": "Q",
+  "primary_metric": "quote_exact",
+  "sources": {
+    "config_path": "E:\\Research\\overlay_algebra_codex_research_build_pack_patched\\configs\\reports\\full_single_overlay_recovery_Q.yaml",
+    "direct_metrics_path": "runs\\oa_m4_full_direct_q_eval_17\\metrics.json",
+    "prompt_only_metrics_path": "runs\\oa_m4_full_prompt_only_q_eval_17\\metrics.json",
+    "scaffold_plain_metrics_path": null,
+    "soar_metrics_path": "runs\\oa_m4_full_soar_q_eval_17\\metrics.json"
+  },
+  "systems": {
+    "direct": {
+      "answer_em": 0.6506537805571347,
+      "answer_f1": 0.8120979675270877,
+      "quote_exact": 0.9413492514686375,
+      "quote_f1": 0.9496660913848894
+    },
+    "prompt_only": {
+      "answer_em": 0.0,
+      "answer_f1": 0.0,
+      "quote_exact": 0.0,
+      "quote_f1": 0.0
+    },
+    "soar": {
+      "answer_em": 0.6503695281409893,
+      "answer_f1": 0.8121520139841866,
+      "quote_exact": 0.9414440022740194,
+      "quote_f1": 0.9498698263923895
+    }
+  }
+}

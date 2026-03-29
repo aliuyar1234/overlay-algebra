@@ -1,0 +1,52 @@
+
+\section{Audit Trail and Reproducibility Notes}
+\label{app:audit}
+
+The paper is built from a reduced-scope artifact bundle rather than from informal notebook outputs. Three details are especially important for reviewers.
+
+\paragraph{Deterministic data and evaluation.}
+The processed dataset is versioned, sentence splitting is pinned, and the split audit reports no title overlap across train, validation, and test. The bundle's dataset manifest also reports zero round-trip compilation failures over all non-empty processed splits. Evaluation is parser-based throughout; malformed outputs score as failures under the strict metrics rather than being rescued by ad hoc manual inspection.
+
+\paragraph{Corrected quote path.}
+The canonical quote artifacts in this paper are \emph{corrected} artifacts. An earlier full-scale quote path surfaced a condition-metric aggregation bug that could silently undercount parse failures. That bug was repaired, the tainted canonical quote artifacts were archived rather than overwritten, and the canonical quote reports in the current bundle were regenerated from corrected metrics. The corrected full-scale quote path selects $\beta=1.0$ and yields the positive recovery result reported in the main text.
+
+\paragraph{Single-seed evidence.}
+All reported full-scale numbers come from seed~17. We therefore present the paper as a controlled, artifact-backed single-seed study. The contribution lies in the protocol, the auditable result chain, and the clarity of the recovery signature, not in broad variance estimates.
+
+Table~\ref{tab:additional-metrics} provides the secondary metrics saved in the artifact bundle.
+
+\begin{table}[h]
+    \centering
+    \begin{threeparttable}
+    \caption{\textbf{Secondary full-scale metrics from the canonical bundle.}}
+    \label{tab:additional-metrics}
+    \small
+    \setlength{\tabcolsep}{4pt}
+    \renewcommand{\arraystretch}{1.06}
+    \begin{tabular}{l l
+                    S[table-format=1.4]
+                    S[table-format=1.4]
+                    S[table-format=1.4]
+                    S[table-format=1.4]}
+        \toprule
+        \textbf{Overlay} & \textbf{System} &
+        {\textbf{Ans.\ EM}} &
+        {\textbf{Ans.\ F1}} &
+        {\textbf{Aux.\ 1}} &
+        {\textbf{Aux.\ 2}} \\
+        \midrule
+        \multirow{2}{*}{\overlay{J}} & Direct & 0.6803 & 0.8346 & 0.9986 \tnote{a} & 0.9986 \tnote{b} \\
+                                     & \method{} & 0.6810 & 0.8344 & 0.9986 \tnote{a} & 0.9986 \tnote{b} \\
+        \multirow{2}{*}{\overlay{Q}} & Direct & 0.6507 & 0.8121 & 0.9413 \tnote{c} & 0.9497 \tnote{d} \\
+                                     & \method{} & 0.6504 & 0.8122 & 0.9414 \tnote{c} & 0.9499 \tnote{d} \\
+        \bottomrule
+    \end{tabular}
+    \begin{tablenotes}[flushleft]
+        \footnotesize
+        \item[a] \jsonmetric
+        \item[b] \texttt{json\_valid}
+        \item[c] \quotemetric
+        \item[d] \texttt{quote\_f1}
+    \end{tablenotes}
+    \end{threeparttable}
+\end{table}

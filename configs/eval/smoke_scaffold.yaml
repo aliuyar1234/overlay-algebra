@@ -1,0 +1,17 @@
+experiment_name: smoke_scaffold_eval
+milestone: M2
+command: overlay_algebra.eval.run
+seed: 17
+notes: Tiny M2 smoke evaluation for the semantic scaffold adapter on the bundled processed fixture shard.
+paths:
+  eval_dataset: data/processed/squad_jcq_v1_fixture/val.jsonl
+  adapter_dir: runs/oa_m2_smoke_scaffold_17/adapter
+payload:
+  base_model_name_or_path: Qwen/Qwen2.5-7B-Instruct
+  local_files_only: true
+  condition: plain
+  max_length: 192
+  max_new_tokens: 24
+  max_eval_examples: 1
+  device: cuda
+  torch_dtype: bf16

@@ -1,0 +1,38 @@
+{
+  "derived": {
+    "recovery_ratio": 1.0,
+    "semantic_gap_vs_prompt_only": 0.8344310579710837,
+    "soar_minus_prompt_only_primary": 0.9985787379192723
+  },
+  "experiment_name": "full_single_overlay_recovery_j",
+  "milestone": "M4",
+  "overlay_name": "J",
+  "primary_metric": "json_strict_schema_valid",
+  "sources": {
+    "config_path": "E:\\Research\\overlay_algebra_codex_research_build_pack_patched\\configs\\reports\\full_single_overlay_recovery_J.yaml",
+    "direct_metrics_path": "runs\\oa_m4_full_direct_j_eval_17\\metrics.json",
+    "prompt_only_metrics_path": "runs\\oa_m4_full_prompt_only_j_eval_17\\metrics.json",
+    "scaffold_plain_metrics_path": null,
+    "soar_metrics_path": "runs\\oa_m4_full_soar_j_eval_17\\metrics.json"
+  },
+  "systems": {
+    "direct": {
+      "answer_em": 0.6803107826416525,
+      "answer_f1": 0.8346232530138422,
+      "json_strict_schema_valid": 0.9985787379192723,
+      "json_valid": 0.9985787379192723
+    },
+    "prompt_only": {
+      "answer_em": 0.0,
+      "answer_f1": 0.0,
+      "json_strict_schema_valid": 0.0,
+      "json_valid": 0.10081485692628388
+    },
+    "soar": {
+      "answer_em": 0.6809740382793253,
+      "answer_f1": 0.8344310579710837,
+      "json_strict_schema_valid": 0.9985787379192723,
+      "json_valid": 0.9985787379192723
+    }
+  }
+}

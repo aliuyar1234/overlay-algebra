@@ -1,0 +1,13 @@
+panel,overlay,metric_family,metric_name,system,value
+primary,J,primary,json_strict_schema_valid,prompt_only,0.0000
+primary,J,primary,json_strict_schema_valid,direct,0.9986
+primary,J,primary,json_strict_schema_valid,soar,0.9986
+primary,Q,primary,quote_exact,prompt_only,0.0000
+primary,Q,primary,quote_exact,direct,0.9413
+primary,Q,primary,quote_exact,soar,0.9414
+semantic,J,semantic,answer_f1,prompt_only,0.0000
+semantic,J,semantic,answer_f1,direct,0.8346
+semantic,J,semantic,answer_f1,soar,0.8344
+semantic,Q,semantic,answer_f1,prompt_only,0.0000
+semantic,Q,semantic,answer_f1,direct,0.8121
+semantic,Q,semantic,answer_f1,soar,0.8122
