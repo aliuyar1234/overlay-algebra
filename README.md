@@ -1,6 +1,7 @@
 # Overlay Algebra
 
 [![Paper PDF](https://img.shields.io/badge/Paper-PDF-B31B1B?style=flat-square)](https://github.com/aliuyar1234/overlay-algebra/raw/main/paper/tmlr/overlay_algebra_causal_composition_of_operational_behaviors_ali_uyar.pdf)
+[![DOI](https://zenodo.org/badge/1195229853.svg)](https://doi.org/10.5281/zenodo.19313240)
 [![Manuscript Source](https://img.shields.io/badge/LaTeX-TMLR%20source-1D4ED8?style=flat-square)](paper/tmlr/main.tex)
 [![License: Apache 2.0](https://img.shields.io/badge/License-Apache%202.0-0F766E?style=flat-square)](LICENSE)
 [![Scope](https://img.shields.io/badge/Scope-J%2FQ%20single--overlay-374151?style=flat-square)](#current-scope)
