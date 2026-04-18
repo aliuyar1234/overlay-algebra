@@ -9,7 +9,7 @@
   "overlay_name": "J",
   "primary_metric": "json_strict_schema_valid",
   "sources": {
-    "config_path": "E:\\Research\\overlay_algebra_codex_research_build_pack_patched\\configs\\reports\\full_single_overlay_recovery_J.yaml",
+    "config_path": "configs/reports/full_single_overlay_recovery_J.yaml",
     "direct_metrics_path": "runs\\oa_m4_full_direct_j_eval_17\\metrics.json",
     "prompt_only_metrics_path": "runs\\oa_m4_full_prompt_only_j_eval_17\\metrics.json",
     "scaffold_plain_metrics_path": null,

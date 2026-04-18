@@ -32,7 +32,7 @@
     }
   },
   "sources": {
-    "config_path": "E:\\Research\\overlay_algebra_codex_research_build_pack_patched\\configs\\reports\\full_single_overlay_JQ.yaml",
+    "config_path": "configs/reports/full_single_overlay_JQ.yaml",
     "j_report": "reports\\full_single_overlay_recovery_j\\metrics.json",
     "overlay_reports": {
       "J": "reports\\full_single_overlay_recovery_j\\metrics.json",

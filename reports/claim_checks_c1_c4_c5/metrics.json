@@ -63,7 +63,7 @@
   "experiment_name": "claim_checks_c1_c4_c5",
   "milestone": "M4",
   "sources": {
-    "config_path": "E:\\Research\\overlay_algebra_codex_research_build_pack_patched\\configs\\reports\\c1_c4_c5.yaml",
+    "config_path": "configs/reports/c1_c4_c5.yaml",
     "dataset_manifest": "data\\processed\\squad_jcq_v1\\dataset_manifest.json",
     "factor_ablation": null,
     "pair_summary": null,

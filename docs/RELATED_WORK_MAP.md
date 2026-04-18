@@ -6,7 +6,7 @@ Before submission, replace placeholders with verified references.
 
 ## 1. Why this file exists
 The novelty claim for this project depends on carefully separating it from nearby work.
-This file tells Codex what categories matter and what not to overclaim.
+This file records which categories matter and what not to overclaim.
 
 ## 2. Known nearby categories
 

@@ -333,7 +333,7 @@ These are **upper bounds / ceilings**, not fairness baselines that SOAR must alw
 - prompt-only unexpectedly strong => paper framing must acknowledge prompt contribution
 - pair prompt semantics leak into comparison => acceptable only if identical across SOAR, merge, and prompt-only baselines
 
-## 13. Incorrect shortcuts Codex must avoid
+## 13. Incorrect shortcuts to avoid
 - subtracting raw `A` / `B` factor matrices directly
 - using the official SQuAD split without a validation partition
 - letting the sentence splitter run differently across sessions
