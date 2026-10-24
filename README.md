@@ -1,4 +1,4 @@
-# Overlay Algebra: Causal Composition of Operational Behaviors in Frozen Language Models
+# SOAR: Recovering Operational Overlays from Shared Semantics in Frozen Language Models
 
 [![Paper PDF](https://img.shields.io/badge/Paper-PDF-B31B1B?style=flat-square&logo=adobeacrobatreader&logoColor=white)](https://github.com/aliuyar1234/overlay-algebra/raw/main/paper/tmlr/overlay_algebra_causal_composition_of_operational_behaviors_ali_uyar.pdf)
 [![DOI](https://zenodo.org/badge/DOI/10.5281/zenodo.19313240.svg)](https://doi.org/10.5281/zenodo.19313240)
@@ -10,7 +10,7 @@
 Ali Uyar
 Independent Researcher
 
-**Paper title:** *Overlay Algebra: Causal Composition of Operational Behaviors in Frozen Language Models*
+**Paper title:** *SOAR: Recovering Operational Overlays from Shared Semantics in Frozen Language Models*
 
 This repository accompanies a methods paper on whether deployment-style output requirements can be isolated as reusable low-rank overlays on top of shared question-answering semantics in a frozen language model. The current public release centers the validated reduced-scope `J/Q` paper path and the TMLR LaTeX manuscript.
 
@@ -132,7 +132,7 @@ This repository is released under the [Apache-2.0 License](LICENSE).
 ```bibtex
 @misc{uyar2026overlayalgebra,
   author       = {Uyar, Ali},
-  title        = {Overlay Algebra: Causal Composition of Operational Behaviors in Frozen Language Models},
+  title        = {SOAR: Recovering Operational Overlays from Shared Semantics in Frozen Language Models},
   year         = {2026},
   doi          = {10.5281/zenodo.19313240},
   url          = {https://doi.org/10.5281/zenodo.19313240},

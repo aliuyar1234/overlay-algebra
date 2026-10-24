@@ -1,6 +1,6 @@
 cff-version: 1.2.0
 message: "If you use this repository or manuscript, please cite it using the metadata below."
-title: "Overlay Algebra: Causal Composition of Operational Behaviors in Frozen Language Models"
+title: "SOAR: Recovering Operational Overlays from Shared Semantics in Frozen Language Models"
 type: software
 authors:
   - family-names: Uyar
@@ -21,7 +21,7 @@ keywords:
   - reproducibility
 preferred-citation:
   type: article
-  title: "Overlay Algebra: Causal Composition of Operational Behaviors in Frozen Language Models"
+  title: "SOAR: Recovering Operational Overlays from Shared Semantics in Frozen Language Models"
   authors:
     - family-names: Uyar
       given-names: Ali
